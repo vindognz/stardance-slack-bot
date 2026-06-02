@@ -28,6 +28,17 @@ app.command("/vnz-catfact", async ({ ack, respond }) => {
   }
 });
 
+app.command('/vnz-help', async ({ ack, respond }) => {
+  await ack();
+  await respond({
+    text:
+`Available Commands:
+  * /vnz-ping - Check bot latency
+  * /vnz-catfact - Get a cat fact
+`
+  });
+});
+
 (async () => {
   await app.start();
   console.log("bot is running!");
