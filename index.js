@@ -44,6 +44,33 @@ ${response.data.punchline}`
   }
 });
 
+app.command('/vnz-coffee', async ({ ack, respond }) => {
+  await ack();
+
+  try {
+    const coffeeURL = `https://coffee.alexflipnote.dev/random?t=${Date.now()}`;
+
+    await respond({
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "Here's your coffee! ☕",
+          },
+        },
+        {
+          type: "image",
+          image_url: coffeeURL,
+          alt_text: "Coffee",
+        },
+      ],
+    });
+  } catch (err) {
+    await respond({ text: "Failed to fetch a coffee image from API." });
+  }
+});
+
 app.command('/vnz-help', async ({ ack, respond }) => {
   await ack();
   await respond({
