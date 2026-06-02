@@ -80,6 +80,7 @@ app.command('/vnz-help', async ({ ack, respond }) => {
   - /vnz-ping    - Check bot latency.
   - /vnz-catfact - Get a cat fact from the API.
   - /vnz-joke    - Get a joke from the API.
+  - /vnz-coffee  - Get a coffee from the API.
 `
   });
 });
