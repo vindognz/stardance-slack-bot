@@ -28,13 +28,31 @@ app.command("/vnz-catfact", async ({ ack, respond }) => {
   }
 });
 
+app.command("/vnz-joke", async ({ ack, respond }) => {
+  await ack();
+
+  try {
+    const response = await axios.get("https://official-joke-api.appspot.com/random_joke");
+    await respond({
+      text:
+`${response.data.setup}
+
+${response.data.punchline}`
+    });
+  } catch (err) {
+    await respond({ text: "Failed to fetch a joke from API." });
+  }
+});
+
 app.command('/vnz-help', async ({ ack, respond }) => {
   await ack();
   await respond({
     text:
 `Available Commands:
-  * /vnz-ping - Check bot latency
-  * /vnz-catfact - Get a cat fact
+  - /vnz-help    - You're looking at it...
+  - /vnz-ping    - Check bot latency.
+  - /vnz-catfact - Get a cat fact from the API.
+  - /vnz-joke    - Get a joke from the API.
 `
   });
 });
